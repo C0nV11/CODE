@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="1404.47">
+  <style type="text/css">
+.btm {
+border: .25em solid black;
+padding: 1em 3em;
+color: black;
+background: linear-gradient( to top left, pink, powderblue);
+border-radius: 1em;
+position: relative;
+transition: all 0.3s;
+
+}
+.btm::after {
+content: "";
+position: absolute;
+top: 120%;
+left: 0;
+height: 100%;
+width: 100%;
+}
+.btm:hover {
+color: gray;
+filter: blur(1px);
+background: linear-gradient(to top left, pink, powderblue) ;
+box-shadow: 0 30px 40px -6px rgba(238, 103, 97, 0.5);
+}
+  </style>
+</head>
+<body>
+<a href="ссылка"><button class="btm">Ваша кнопка</button></a><br>
+</body>
+</html>

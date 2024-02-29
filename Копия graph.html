@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>BSTU_CODER</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="./style.css">
+<style>
+
+body, html {
+  height: 100%;
+  width: 100%;
+}
+a {
+  text-decoration: none;
+  }
+
+button {
+background-color: #53566a;
+border: none;
+
+}
+
+body {
+
+  background-size: cover;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Open Sans", "Roboto", "Ubuntu", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+::-moz-selection {
+  color: white;
+  background: rgba(170, 170, 170, 0.6);
+}
+
+::selection {
+  color: white;
+  background: rgba(170, 170, 170, 0.6);
+}
+
+#triangle {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 0;
+  height: 0;
+  border-bottom: 100vh solid #b7bfd1;
+  border-left: 100vw solid transparent;
+}
+
+.hide {
+  display: none;
+}
+
+#app {
+  color: #CCDAE5;
+  background: #383A48;
+  position: relative;
+  border-radius: 15px;
+  z-index: 5;
+  width: 320px;
+  height: 550px;
+  overflow: hidden;
+  box-shadow: 0px 10px 29px 10px rgba(0, 0, 0, 0.25);
+}
+@media (max-width: 500px) {
+  #app {
+    width: 250px;
+    height: 420px;
+  }
+}
+@media (max-height: 430px) {
+  #app {
+    width: 230px;
+    height: 390px;
+  }
+}
+
+.secondary {
+  color: rgba(204, 218, 229, 0.7);
+}
+
+.tertiary {
+  color: rgba(204, 218, 229, 0.5);
+}
+
+#title {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+#title > h4 {
+  margin: 15px 0 10px 15px;
+}
+@media (max-width: 500px) {
+  #title > h4 {
+    margin-bottom: 10px;
+  }
+}
+
+.btc-heading {
+  margin: 0px 10px;
+}
+
+#balance {
+  margin-left: 25px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
+@media (max-width: 500px) {
+  #balance {
+    font-size: 25px;
+    margin: 0px 20px;
+  }
+}
+@media (max-height: 430px) {
+  #balance {
+    font-size: 20px;
+    margin: 0 15px;
+  }
+}
+
+.clickable {
+  transition: 0.2s;
+}
+.clickable:active {
+  color: rgba(204, 218, 229, 0.85);
+  transform: scale(0.9);
+}
+.clickable:hover {
+  cursor: pointer;
+}
+
+@media (max-height: 430px) {
+  i {
+    font-size: 25px !important;
+  }
+}
+
+#menu {
+  position: absolute;
+  right: 15px;
+  top: 8px;
+}
+#menu > i {
+  margin: 28px 0px 10px 20px;
+}
+@media (max-width: 500px) {
+  #menu > i {
+    margin: 35px -6px 0px 15px;
+  }
+}
+
+#wallet-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 80%;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background: #434656;
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.25);
+}
+
+#coin-list {
+  list-style: none;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 20%;
+  margin: 0;
+  padding: 0;
+}
+
+.list-item {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border-radius: 15px;
+  align-items: center;
+  transition: 0.3s;
+  margin: 15px 10px 0 10px;
+  background: #53566a;
+  padding: 10px;
+}
+@media (max-width: 500px) {
+  .list-item {
+    margin: 15px 5px 0 5px;
+  }
+}
+.list-item:hover {
+  cursor: pointer;
+}
+@media (max-height: 430px) {
+  .list-item {
+    margin: 25px 5px 0px 0px;
+    font-size: 15px;
+  }
+}
+
+.selected-coin {
+  background: linear-gradient(to top left, #3c3f4e, #595d73);
+  padding: 15px;
+  box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.25);
+}
+@media (max-width: 500px) {
+  .selected-coin {
+    padding: 10px;
+  }
+}
+@media (max-height: 430px) {
+  .selected-coin {
+    padding: 10px;
+  }
+}
+
+.coin-name {
+  margin: 0 0 0 0;
+}
+
+#caret-down {
+  position: absolute;
+  right: 30px;
+  top: 20px;
+}
+
+#eth-card {
+  width: 85%;
+  height: 65%;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: content-box;
+  overflow-y: auto;
+  background: #4a4c5f;
+  background: radial-gradient(top, #595d73, #434656);
+  background: -moz-radial-gradient(top, #595d73, #434656);
+  box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.25);
+  margin: 25px 0 0 0;
+}
+
+#eth-chart {
+  margin-top: 15px;
+  width: 100%;
+  height: 40%;
+  background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg version='1.1' width='995px' height='233px' viewBox='0 0 995.0 233.0' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Cdefs%3E%3CclipPath id='i0'%3E%3Cpath d='M457.048281,0 L464.347393,6.7010703 L535.926502,105.383926 L521.696593,111.308214 L457.433267,19.3264288 L442.851843,33.4225003 L438.482369,37.6482143 L431.417644,35.183216 L427.249129,33.7332142 L406.490211,66.4307155 L403.912087,70.4907147 L396.981291,69.7139285 L391.774771,69.1235729 L379.36964,89.0196436 L374.163164,97.3675011 L367.29931,92.3442853 L355.279209,107.911072 L354.827237,108.511786 L354.140834,109.019287 L331.975639,125.46643 L322.048174,132.840715 L317.243485,123.716071 L309.96113,109.878928 L280.011292,86.1610713 L266.250156,97.2017863 L260.122891,102.131785 L253.225566,97.6057141 L245.005751,92.2096427 L231.51243,114.985001 L226.372897,123.664286 L216.847219,116.538571 L215.759029,115.720359 L189.927564,158.215714 L185.909735,164.833928 L176.769088,160.587501 L175.697655,160.090357 L163.895183,173.005714 L159.626211,177.666428 L152.14294,174.994286 L145.19543,172.508572 L138.381761,179.882857 L129.961031,189.0075 L123.097177,179.396072 L105.954301,155.346785 L87.2545036,181.136072 L84.6093936,184.781786 L78.2143134,184.212144 L72.4721646,183.704643 L48.733292,210.633215 L40.8649921,219.550715 L35.0725708,212.383571 L29.8325797,220.948929 L23.1696413,231.803213 L19.0848266,227.11143 L15.9207579,232 L0,228.064287 L9.97765005,212.6425 L16.7913186,202.109286 L20.4575886,206.314287 L25.9821518,197.303573 L32.9297057,185.993573 L41.5346374,196.651073 L60.267862,175.398214 L63.1138438,172.166786 L69.0067228,172.684644 L74.2467139,173.150713 L98.2031721,140.121785 L106.08823,129.246785 L113.856115,140.152857 L131.936452,165.496787 L134.581562,162.627858 L138.850491,157.998214 L146.317048,160.659999 L153.23113,163.125 L165.586032,149.619287 L170.390721,144.368215 L177.907463,147.858571 L204.910818,103.416072 L210.117338,94.8403585 L219.542514,101.903929 L220.547004,102.659999 L233.688766,80.4957148 L238.476698,72.4275017 L247.985662,78.6832139 L258.817115,85.7985722 L273.180953,74.2814286 L279.910878,68.8750007 L286.724503,74.2503564 L324.391954,104.068572 L325.312657,104.80393 L325.78143,105.694643 L328.744627,111.308214 L340.262483,102.742857 L357.53929,80.3714287 L363.264724,72.9764286 L368.588416,76.8603564 L378.331723,61.2107154 L380.876331,57.1196441 L387.857357,57.9067867 L393.114062,58.4971423 L414.910941,24.1735733 L418.527026,18.4874983 L427.1152,21.4910697 L432.773692,23.4692881 L450.017027,6.8046434 L457.048281,0 Z'%3E%3C/path%3E%3C/clipPath%3E%3CclipPath id='i1'%3E%3Cpath d='M378.227479,0 L385.526592,6.7010703 L474.723058,88.6053566 L460.493149,94.5296445 L378.612465,19.3264288 L364.031042,33.4225003 L359.661568,37.6482143 L352.596842,35.183216 L348.428327,33.7332142 L327.669409,66.4307155 L325.091286,70.4907147 L318.160489,69.7139285 L312.953969,69.1235729 L300.548839,89.0196436 L295.342363,97.3675011 L288.478509,92.3442853 L276.458408,107.911072 L276.006435,108.511786 L275.320032,109.019287 L253.154837,125.46643 L243.227372,132.840715 L238.422684,123.716071 L231.140329,109.878928 L201.19049,86.1610713 L187.429355,97.2017863 L181.302089,102.131785 L174.404764,97.6057141 L166.184949,92.2096427 L152.691629,114.985001 L147.552095,123.664286 L138.026417,116.538571 L136.938227,115.720359 L111.106762,158.215714 L107.088934,164.833928 L97.948286,160.587501 L96.8768534,160.090357 L85.0743816,173.005714 L80.805409,177.666428 L73.3221387,174.994286 L66.3746284,172.508572 L59.5609598,179.882857 L51.1402297,189.0075 L44.2763759,179.396072 L0,107.911072 L14.9830084,104.068572 L53.1156507,165.496787 L55.7607607,162.627858 L60.0296897,157.998214 L67.4962461,160.659999 L74.4103288,163.125 L86.7652307,149.619287 L91.5699196,144.368215 L99.0866612,147.858571 L126.090017,103.416072 L131.296536,94.8403585 L140.721713,101.903929 L141.726203,102.659999 L154.867965,80.4957148 L159.655896,72.4275017 L169.16486,78.6832139 L179.996313,85.7985722 L194.360151,74.2814286 L201.090076,68.8750007 L207.903701,74.2503564 L245.571153,104.068572 L246.491855,104.80393 L246.960629,105.694643 L249.923826,111.308214 L261.441682,102.742857 L278.718488,80.3714287 L284.443923,72.9764286 L289.767614,76.8603564 L299.510921,61.2107154 L302.05553,57.1196441 L309.036555,57.9067867 L314.29326,58.4971423 L336.090139,24.1735733 L339.706224,18.4874983 L348.294398,21.4910697 L353.952891,23.4692881 L371.196225,6.8046434 L378.227479,0 Z'%3E%3C/path%3E%3C/clipPath%3E%3C/defs%3E%3Cg transform='translate(0.3765000000003056 0.2709469999999783)'%3E%3Cg clip-path='url(%23i0)'%3E%3Cpolygon points='0,0 535.926502,0 535.926502,232 0,232 0,0' stroke='none' fill='%23FFFFFF'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3Cg transform='translate(520.1973015495983 0.2709469999999783)'%3E%3Cg clip-path='url(%23i1)'%3E%3Cpolygon points='0,0 474.723058,0 474.723058,189.0075 0,189.0075 0,0' stroke='none' fill='%23FFFFFF'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+#eth-info {
+  margin-left: 10px;
+  position: relative;
+  align-items: center;
+}
+#eth-info > h4 {
+  margin: 0;
+}
+#eth-info > #right {
+  position: absolute;
+  right: 5px;
+  top: 0;
+  text-align: right;
+}
+
+.amount {
+  font-size: 20px;
+  margin: 5px 0 0 5px;
+}
+@media (max-width: 500px) {
+  .amount {
+    font-size: 16px;
+  }
+}
+@media (max-height: 430px) {
+  .amount {
+    font-size: 16px;
+  }
+}
+
+#profit {
+  color: #7bba6f;
+}
+
+#currency-name {
+  font-weight: 400;
+}
+
+.coin-value {
+  margin: 5px 0 3px 5px;
+}
+
+#transaction-icons {
+  display: flex;
+  margin-top: 15px;
+  justify-content: center;
+  align-items: center;
+}
+@media (max-width: 500px) {
+  #transaction-icons {
+    margin-top: 7px;
+  }
+}
+#transaction-icons > i {
+  margin: 0 5px 0 5px;
+}
+</style>
+</head>
+<body>
+<html>
+  <head>
+  <body>
+    <div id="triangle"></div>
+    <div id="app">
+      <div id="title">
+        <h4 class="tertiary">Your wallet</h4>
+        <div id="balance"><i class="fab fa-btc clickable" title="BTC/USD"></i>
+          <h3 class="btc-heading" title="Wallet value">0</h3>
+        </div>
+      </div>
+      <div id="menu"><i class="fas fa-chart-line fa-2x secondary clickable" title="Wallet Value Chart"></i><i class="fas fa-user-circle fa-2x secondary clickable" title="Your Account"></i></div>
+      <div id="wallet-container">
+        <ul id="coin-list">
+          <li class="list-item">
+
+
+<a href="graph.html"><button> <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32"><g fill="none" fill-rule="evenodd"><ellipse cx="16" cy="16" fill="#6F7CBA" rx="16" ry="16"></ellipse><path fill="#FFF" d="M10.129 17.759c-.104-.149-.062-.198.087-.115l5.494 3.084a.64.64 0 0 0 .556 0l5.589-3.078c.155-.085.193-.031.09.115l-5.746 8.125c-.105.148-.276.146-.378 0l-5.692-8.131zm.039-2.032a.291.291 0 0 1-.125-.418l5.738-9.202c.093-.15.246-.148.338 0l5.774 9.189c.094.149.043.334-.124.418l-5.507 2.777a.727.727 0 0 1-.587 0l-5.507-2.764z"></path></g></svg></button></a>
+            <h5 class="coin-name">Ethereum</h5>
+          </li>
+          <li class="list-item selected-coin">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="-2 -2 40 40"><g fill="none" fill-rule="evenodd"><circle cx="19" cy="19" r="19" fill="#B5B5B5" fill-rule="nonzero"></circle><path fill="#FFF" d="M12.285 28.04l1.295-5.525-1.58.677.631-2.854 1.637-.675L16.522 10h5.225l-1.517 7.137 2.088-.739-.578 2.705-2.052.79-.905 4.347h8.104l-.986 3.797z"></path></g></svg>            
+            <h5 class="coin-name">Litecoin</h5>
+          </li>
+          <li class="list-item">
+           <a href="Копияgraph.html"><button><svg width="25" height="25" viewBox="-2 -2 40 40" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><circle fill="#FFAD02" cx="19" cy="19" r="19"></circle><path d="M24.701 19.676a3.63 3.63 0 0 0 1.469-2.06c.741-2.767-.46-4.868-3.204-5.604h.001l.888-3.32a.228.228 0 0 0-.16-.28l-1.317-.353a.227.227 0 0 0-.275.154l-.892 3.33-1.756-.471.888-3.321a.228.228 0 0 0-.16-.28l-1.317-.353a.227.227 0 0 0-.275.154l-.892 3.33-3.735-1a.228.228 0 0 0-.278.16l-.356 1.33a.236.236 0 0 0 .16.28l.22.058a1.826 1.826 0 0 1 1.282 2.242l-1.896 7.084a1.828 1.828 0 0 1-2.075 1.335.228.228 0 0 0-.238.114l-.69 1.247a.231.231 0 0 0-.012.2.227.227 0 0 0 .15.132l3.672.984-.892 3.33c-.027.119.043.239.16.27l1.318.353a.228.228 0 0 0 .279-.162l.891-3.32 1.756.47-.892 3.33c-.027.119.043.239.161.27l1.317.353a.228.228 0 0 0 .279-.162l.891-3.32.877.235c2.744.735 4.835-.484 5.576-3.251a3.633 3.633 0 0 0-.923-3.488zm-5.96-5.948l2.635.705a1.826 1.826 0 0 1 1.281 2.242 1.826 1.826 0 0 1-2.23 1.3l-2.634-.706.949-3.541zm1.14 9.795l-3.512-.941.95-3.542 3.511.941a1.826 1.826 0 0 1 1.282 2.242 1.826 1.826 0 0 1-2.23 1.3z" fill="#FFF"></path></g></svg>
+            
+            <h5 class="coin-name">Bitcoin</h5> 
+          </button></a>
+          </li>
+        </ul>
+        <div id="eth-card">
+          <div id="eth-chart" title="ETH/USD 7 day chart"></div>
+          <div id="eth-info">
+            <div id="left">
+              <h4 class="tertiary">Total</h4>
+              <p class="amount">837.19 <span class="secondary" id="currency-name">BTC</span></p>
+              <p class="coin-value">982.40 <span class="secondary" id="currency-name">USD</span></p>
+              <p class="coin-value">1 656 729.14 <span class="secondary" id="currency-name">ETH</span></p>
+            </div>
+            <div id="right">
+              <h4 class="tertiary">Volume 24h</h4>
+              <p class="amount" id="profit">21,71 $ <span class="secondary" id="currency-name">USD</span></p>
+              <div id="transaction-icons"><i class="far fa-list-alt fa-2x secondary clickable" title="Transaction History"></i><i class="far fa-plus-square fa-2x secondary clickable" title="Add/Edit Transaction"></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+  
+</body>
+</html>

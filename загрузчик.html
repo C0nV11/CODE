@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="1138.51">
+  <style type="text/css">
+svg {
+ width: 3.25em;
+ transform-origin: center;
+ animation: rotate4 2s linear infinite;
+}
+
+circle {
+ fill: none;
+ stroke: hsl(214, 97%, 59%);
+ stroke-width: 2;
+ stroke-dasharray: 1, 200;
+ stroke-dashoffset: 0;
+ stroke-linecap: round;
+ animation: dash4 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate4 {
+ 100% {
+  transform: rotate(360deg);
+ }
+}
+
+@keyframes dash4 {
+ 0% {
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+ }
+
+ 50% {
+  stroke-dasharray: 90, 200;
+  stroke-dashoffset: -35px;
+ }
+
+ 100% {
+  stroke-dashoffset: -125px;
+ }
+}
+  </style>
+  <script type="text/JavaScript">
+
+    function doRedirect() {
+        atTime = "8000";
+        toUrl = "Копия Новый3.html";
+
+        setTimeout("location.href = toUrl;", atTime);
+    }
+
+</script>
+
+</head>
+
+<body onload="doRedirect();">
+<svg viewBox="25 25 50 50">
+  <circle r="20" cy="50" cx="50"></circle>
+</svg>
+</body>
+</html>
